@@ -1,3 +1,3 @@
-module github.com/girikuncoro/belajar-cicd-pemula
+module https://github.com/Yezato/CICD_test
 
 go 1.17
