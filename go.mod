@@ -1,3 +1,3 @@
-module https://github.com/Yezato/CICD_test
+module github.com/Yezato/CICD_test
 
 go 1.17
