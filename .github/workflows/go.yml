@@ -12,7 +12,7 @@ on:
 jobs:
 
   Test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
 
@@ -34,7 +34,7 @@ jobs:
     name: Build Artifact
     needs: Test
     
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Set up Go
       uses: actions/setup-go@v3
