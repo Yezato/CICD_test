@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  build:
+  Test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -28,3 +28,39 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+    
+#build Stage
+  build:
+    name: Build Artifact
+    needs: Test
+    
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+    - name: download dependency
+      run: go mod tidy
+      
+    - name: Build
+      run: go build -v ./...   
+    
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+    - name: download dependency
+      run: go mod tidy
+      
+    - name: Build
+      run: go build -v ./...
+      
+  #BUILD THE ARTIFACT
+    - name: Upload GO Artifact
+      uses: actions/upload-artifact@v2
+      with:
+    #set artifact name
+        name: artifact_GO
+        #From:
+        path: /*.exe
