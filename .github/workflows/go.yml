@@ -46,4 +46,4 @@ jobs:
     #set artifact name
         name: artifact_GO
         #From:
-        path: /*.exe
+        path: ./*.exe
