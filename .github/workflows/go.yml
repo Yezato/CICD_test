@@ -38,12 +38,17 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
-      
-  #BUILD THE ARTIFACT
-    - name: Upload GO Artifact
-      uses: actions/upload-artifact@v2
+# push to docker file 
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v3
       with:
-    #set artifact name
-        name: artifact_GO
-        #From:
-        path: ./*.exe
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: yezato/test-cicd:latest
